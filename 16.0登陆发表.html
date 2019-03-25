@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登陆发表</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{
+				background: url(img/Back.jpg)no-repeat;
+				background-size: 100%;
+				height: auto;
+				overflow: hidden;
+			}
+			.Header{
+				width: 100%;
+				height: 30px;
+				border-bottom: 1px solid #CCCCCC;
+				background: #EEEEEE;
+			}
+			.Header .Content{
+				width: 1280px;
+				height: 30px;
+				margin: auto;
+				padding-right: 20px;
+			}
+			.Header .Content .Left{
+				line-height: 30px;
+				float: left;
+				padding-left: 5px;
+			}
+			.Header .Content ul{list-style: none;float: right;}
+			.Header .Content li{cursor: pointer; width: 92px;height: 30px;float: left;line-height: 30px;font-size: 14px;padding-left: 8px;}
+			.Header .Content #GeR{background: url(img/ico.gif)no-repeat 70px -14px;}
+			.Border{
+				width: 1280px;
+				height: auto;
+				overflow: hidden;
+				margin: auto;
+				padding: 0 20px 0 0;
+			}
+			.Border ul{
+				list-style: none;
+				width: 100px;
+				height: auto;
+				overflow: hidden;
+				padding: 10px 0 25px 0;
+				border: 1px solid black;
+				border-top: none;
+				float: right;
+				background: bisque;
+			}
+			#GongJu{display: none;}
+			.Border ul li{
+				width: 95%;
+				padding: 5px 0 5px 5%;
+				height: 20px;
+				cursor: pointer;
+				line-height: 20px;
+			}
+			.Border ul li img{
+				width: 20px;
+				float: left;
+			}
+			.Border ul li span{font-size: 14px;margin-left: 3px;}
+			#FaBiao{display: none; z-index:999; width:600px;height:350px; border:1px solid #ccc; position: absolute; margin:auto; left:0; top:0; right:0; bottom:0;}
+			#FaBiao .head{line-height: 30px;text-align: center;width: 100%;height: 30px;border-bottom: 1px solid #CCCCCC;background: #EEEEEE;}
+			#FaBiao .head img{cursor: pointer; width: 20px;float: right;margin-top: 5px;margin-right: 5px;}
+			#FaBiao .NeiR{width: 560px;height: 249px;background: white;padding: 30px 20px 40px 20px;}
+			#FaBiao .NeiR #Bt{width: 180px;height: 30px;border: 1px solid #CCCCCC;margin-bottom: 20px;}
+			#FaBiao .NeiR #Nr{border: 1px solid #CCCCCC; width: 300px;height: 150px; max-width: 300px;max-height: 150px;}
+			#FaBiao .NeiR #Qr{outline: none; cursor: pointer; margin-top: 10px; font-size: 16px; width: 100px;height: 30px;margin-left: 55px;background: lawngreen;border: 1px solid lawngreen;color: white;}
+			#List{width: 1150px;padding-right: 150px; height: auto;overflow: hidden;margin: auto;position: fixed;top: 200px;left: 125px;}
+			.Wz_List{margin-bottom: 20px; background: white;width: 600px;height: auto; float: right;overflow: hidden; padding-bottom: 30px;border: 1px solid black;}
+			.Wz_List .head{border-bottom: 1px solid #CCCCCC; width: 580px;height: 30px;padding: 0 10px 0 10px;background: #EEEEEE;line-height: 30px;}
+			.Wz_List .head .left{float: left;}
+			.Wz_List .head .right{float: right;}
+			.Wz_List .body{width: 570px;height: auto;overflow: hidden;padding: 20px 15px 40px 15px;}
+			#HBack_List{text-align: center; display: none; z-index:999; width:600px;height:350px; border:1px solid #ccc; position: absolute; margin:auto; left:0; top:0; right:0; bottom:0;}
+			#HBack_List h4{width: 585px;height: 30px;line-height: 30px;background: #EEEEEE;padding-left: 15px;}
+			#HBack_List h4 span{cursor: pointer; width: 20px;height: 20px;background: url(img/Gb.png)no-repeat;background-size: 100%; float: right;z-index: 999999;margin: 5px;}
+			#HBack_List ul{list-style: none;width: 100%;height: 320px;background: white;}
+			#HBack_List ul li{width: 33%;height: 50%;float: left;margin-right:2px ;}
+			#HBack_List ul li .Img{width: 100%;height: 80%;cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<header class="Header">
+			<div class="Content">
+				<span class="Left">😀Com On🙃</span>
+				<ul>
+					<li>首页</li>
+					<li>登陆</li>
+					<li>注册</li>
+					<li id="GeR">个人中心</li>
+				</ul>
+			</div>
+		</header>
+		<div class="Border">
+			<ul id="GongJu">
+				<li id="FaW">
+					<img src="img/JianTou.png"/>
+					<span>发文</span>
+				</li>
+				<li id="HBack">
+					<img src="img/JianTou.png"/>
+					<span>换肤</span>
+				</li>
+				<li>
+					<img src="img/JianTou.png"/>
+					<span>帮助</span>
+				</li>
+				<li>
+					<img src="img/JianTou.png"/>
+					<span>退出</span>
+				</li>
+			</ul>
+		</div>
+		<div id="List"></div>
+		<div id="FaBiao">
+			<div class="head">
+				发表博文
+				<img src="img/Gb.png" id="close"/>
+			</div>
+			<div class="NeiR">
+				<label for="bt">标&nbsp;&nbsp;&nbsp;题:</label>
+				<input type="text" id="Bt" name="bt"/>
+				<label for="bt">(*不可为空)</label><br />
+				<label for="nr" class="nr" style="position: relative;top: -130px;">内&nbsp;&nbsp;&nbsp;容:</label>
+				<textarea name="nr" id="Nr" rows="" cols=""></textarea>
+				<label for="nr" style="position: relative;top: -70px;">(*不可为空)</label>
+				<input type="button" id="Qr" value="发 表" />
+			</div>
+		</div>
+		<div id="HBack_List">
+			<h4>更换皮肤<span id="Hb_close"></span></h4>
+			<ul id="TuBiao">
+				<li>
+					<img src="img/1.jpg" class="Img"/>
+					<p>更换图片</p>
+				</li>
+				<li>
+					<img src="img/2.jpg" class="Img"/>
+					<p>更换图片</p>
+				</li><li>
+					<img src="img/3.jpg" class="Img"/>
+					<p>更换图片</p>
+				</li><li>
+					<img src="img/4.jpg" class="Img"/>
+					<p>更换图片</p>
+				</li><li>
+					<img src="img/5.jpg" class="Img"/>
+					<p>更换图片</p>
+				</li><li>
+					<img src="img/6.jpg" class="Img"/>
+					<p>更换图片</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+	//获取个人中心元素
+	var oGer = document.getElementById("GeR");
+	//获取工具元素
+	var oGj = document.getElementById("GongJu");
+	function getStyle(element,arr){
+		if (window.getComputedStyle) {
+			return window.getComputedStyle(element,null)[arr];
+		} else{
+			return element.currentStyle[arr];
+		}
+	}
+	function onOver(n){
+		n.onmouseover = function(){
+			if (getStyle(oGj,"display") == "none") {
+				oGj.style.display = "block";
+				oGer.style.background = "url(img/ico.gif)no-repeat 70px 14px";
+			}
+		}
+	}
+	function onOut(n){
+		n.onmouseout = function(){
+			if (getStyle(oGj,"display") == "block") {
+				oGj.style.display = "none";
+				oGer.style.background = "url(img/ico.gif)no-repeat 70px -14px";
+			}
+		}
+	}
+	onOver(oGer);
+	onOver(oGj);
+	onOut(oGer);
+	onOut(oGj);
+	//获取关闭元素
+	var oClose = document.getElementById("close");
+	//获取发表元素
+	var oFa = document.getElementById("FaBiao");
+	oClose.onclick = function(){
+		if (getStyle(oFa,"display") == "block") {
+			oFa.style.display = "none";
+		}
+	}
+	//获取发文元素
+	var oFaW = document.getElementById("FaW");
+	oFaW.onclick = function(){
+		if (getStyle(oFa,"display") == "none") {
+			oFa.style.display = "block";
+		}
+	}
+	//获取标题元素
+	var oBt = document.getElementById("Bt");
+	//获取内容元素
+	var oNr = document.getElementById("Nr");
+	//获取提交按钮元素
+	var oQr = document.getElementById("Qr");
+	//获取发表列表
+	var oList = document.getElementById("List");
+	oQr.onclick = function(){
+		if (oBt.value != "" && oNr.value != "") {
+				var date = new Date();
+				//获取年
+				var year = date.getFullYear();
+				//获取月
+				var month = date.getMonth();
+				//获取日
+				var dat = date.getDate();
+				//获取小时
+				var hours = date.getHours();
+				//获取分钟
+				var min = date.getMinutes();
+				//获取秒
+				var seconds = date.getSeconds();
+				//创建发表页面
+				var div = document.createElement("div");
+				div.className = "Wz_List";
+//				oList.appendChild(div);
+				oList.insertBefore(div,oList.childNodes[0]);
+				//创建发表页面的头部
+				var head = document.createElement("div");
+				head.className = "head";
+				div.appendChild(head);
+				//创建标题
+				var left = document.createElement("span");
+				left.className = "left";
+				left.innerHTML = oBt.value;
+				head.appendChild(left);
+				//创建时间
+				var right = document.createElement("span");
+				right.className = "right";
+				right.innerHTML = zero(year)+"/"+zero(month)+"/"+zero(dat)+" "+zero(hours)+":"+zero(min)+":"+zero(seconds);
+				head.appendChild(right);
+				//创建主内容
+				var body = document.createElement("div");
+				body.className = "body";
+				body.innerHTML = oNr.value;
+				div.appendChild(body);
+				oFa.style.display = "none";
+	            oBt.value = "";
+	            oNr.value = "";
+				//补零函数
+				function zero(n){
+					if (n < 10) {
+						return "0" + n;
+					} else{
+						return n;
+					}
+				}
+			} else{
+				alert("标题或内容不能为空");
+			}
+		}
+	var oHBack = document.getElementById("HBack");
+	var oList = document.getElementById("HBack_List");
+	oHBack.onclick = function(){
+		if(getStyle(oList,"display") == "none"){
+			oList.style.display = "block";
+		}
+	}
+	var oHb_Clo = document.getElementById("Hb_close");
+	oHb_Clo.onclick = function(){
+		if (getStyle(oList,"display") == "block") {
+			oList.style.display = "none";
+		}
+	}
+	var Hb_ul = document.getElementById("TuBiao");
+	var Hb_Li = Hb_ul.getElementsByTagName("li");
+	var ImgSrc = document.getElementsByClassName("Img");
+	var oBody = document.getElementsByTagName("body")[0];
+	function Hf(index){
+		for (var i = 0 ; i < Hb_Li.length ; i++) {
+			document.body.style.background = "url("+ImgSrc[index].src+")no-repeat";
+			document.body.style.backgroundSize = "100%";
+			oList.style.display = "none";
+		}
+	}
+	
+	var currentIndex = 0;
+	for(var i = 0 ; i < Hb_Li.length ; i++){
+		Hb_Li[i].index = i;
+		Hb_Li[i].onclick = function () {
+			Hf(this.index);
+            setCookie("tabIndex",this.index,setCookieDate(7));
+        }
+	}
+	currentIndex = getCookie("tabIndex");
+    if(currentIndex){
+    	Hf(currentIndex);
+    }
+</script>
