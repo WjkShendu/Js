@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.carousel{width: 900px;height: 400px;margin: 50px auto;position: relative;overflow: hidden;}
+			.carousel ul{list-style: none;}
+			.carousel ul li{display: none;}
+			.carousel ul li.current{display: block;}
+			.carousel span{position: absolute;width: 55px;height: 55px;top: 130px;cursor: pointer;}
+			.carousel li img{width: 900px;height: 400px;}
+			.carousel .leftBtn{left: 10px;background: url(../img/left.png)no-repeat;background-size: 100%;}
+			.carousel .rightBtn{right: 10px;background: url(../img/Right.png)no-repeat;background-size: 100%;}
+			.carousel .circles{position: absolute;bottom: 0px;width: 200px;height: 17px;left: 50%;margin-left: -50px;bottom: 10px;}
+			.carousel .circles ol{list-style: none;}
+			.carousel .circles ol li{float: left;width: 17px;height: 17px;margin-right: 13px;background: #CCCCCC;border-radius: 50%;cursor: pointer;}
+			.carousel .circles ol li.current{background: purple;}
+			.carousel .blackmask{position: absolute;bottom: 30px;width: 100%;height: 60px;background-color: black;opacity: 0.6;filter:alpha(opacity=60);}
+			.carousel h3{position: absolute;bottom: 30px;height: 60px;line-height: 60px;padding-left: 10px;color:white;font-size:18px;}
+		</style>
+	</head>
+	<body>
+		<div class="carousel" id="carousel">
+		    <div class="imagesList" id="imagesList">
+		        <ul>
+		            <li class="current">
+		                <a href="">
+		                    <img src="img/aaa.jpg" alt="" />
+		                </a>
+		                <div class="blackmask"></div>
+		                <h3>一周美图|谁的眼色撩人？高圆圆媚，汤唯暖，宋仲基帅炸</h3>
+		            </li>
+		            <li>
+		                <a href="">
+		                    <img src="img/bbb.jpg" alt="" />
+		                </a>
+		                <div class="blackmask"></div>
+		                <h3>男星中规中矩，女星小心机尽显！华</h3>
+		            </li>
+		            <li>
+		                <a href="">
+		                    <img src="img/ccc.jpg" alt="" />
+		                </a>
+		                <div class="blackmask"></div>
+		                <h3>8岁的小公主美美哒田亮为女儿范冰冰庆生晒礼物美照</h3>
+		            </li>
+		            <li>
+		                <a href="">
+		                    <img src="img/ddd.jpg" alt="" />
+		                </a>
+		                <div class="blackmask"></div>
+		                <h3>有爱心的女人最美！黄奕捐赠获澳夫人见证…</h3>
+		            </li>
+		            <li>
+		                <a href="">
+		                    <img src="img/eee.jpg" alt="" />
+		                </a>
+		                <div class="blackmask"></div>
+		                <h3>活泼搞怪不像妈！黄奕女儿森碟走秀呆萌可爱</h3>
+		            </li>
+		        </ul>
+		    </div>
+		    <div class="btns">
+		        <span class="leftBtn" id="carousel_leftBtn"></span>
+		        <span class="rightBtn" id="carousel_rightBtn"></span>
+		    </div>
+		    <div class="circles" id="circles">
+		        <ol>
+		            <li class="current"></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		        </ol>
+	    	</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//1.获取元素
+		//a.获取装小圆点的值
+	var oCircles = document.getElementById("circles");
+		//b.获取小圆点
+	var aLi = oCircles.getElementsByTagName("li");
+		//c.获取imagesList
+	var imgList = document.getElementById("imagesList");
+		//d.获取imagesList下的li标签
+	var imgLi = imgList.getElementsByTagName("li");
+		//e.获取左箭头
+	var leftBtn = document.getElementById("carousel_leftBtn");
+		//f.获取右箭头
+	var rightBtn = document.getElementById("carousel_rightBtn");
+		//g.获取大的盒子
+	var oCarousel = document.getElementById("carousel");
+	//2.初始化值保存下标
+	var index = 0;
+	//3.初始化保存定时器
+	var timer = null;
+	//4.封装一个清除和加入class名的方法
+	function Cleak(index){
+		//a.封装遍历清空所有的class名
+		for(var i=0;i<aLi.length;i++){
+	        imgLi[i].className = "";
+	        aLi[i].className = "";
+	    }
+		//b.给当前下标的标签加入class名
+	    aLi[index].className = "current";
+	    imgLi[index].className = "current";
+	}
+	//5.给右箭头添加点击效果
+	rightBtn.onclick = function () {
+		//a.每次下标自加
+	    index++;
+	    //b.如果下标值大于4的时候给下标重新赋值
+	    if(index>4){
+	    	index = 0;
+	    }
+	    //c.调用函数Cleak
+	   	Cleak(index);
+	};
+	//6.给左箭头添加点击事件
+	leftBtn.onclick = function () {
+		//a.每次下标自减
+	    index--;
+	    //b.如果下标值小于0的时候给下标重新赋值
+	    if(index<0){
+	    	index = 4;
+	    }
+	    //c.调用函数Cleak
+	    Cleak(index);
+	}
+	//7.循环遍历小圆点触碰改变
+	for(var i=0;i<aLi.length;i++){
+		//a.函数内部无法调用初始化值保存i
+	    aLi[i].index = i;
+	    //b.给每一项添加触碰效果
+	    aLi[i].onmouseover = function () {
+	    	//c.调用Cleak函数
+	        Cleak(this.index);
+	    }
+	}
+	//8.封装的定时器回调函数
+	function move() {
+		//a.下标自加
+	    index++;
+	    //b.如果下标大于4  下标重新赋值 =0
+	    if(index>4){
+	   	 	index = 0;
+	    }
+	    //c.调用Cleak函数
+	    Cleak(index);
+	}
+	//9.设置定时器自动轮播
+	timer = setInterval(move,1000);
+	//10.当鼠标触碰式清除定时器
+	oCarousel.onmouseover = function () {
+	    clearInterval(timer);
+	}
+	//11.当鼠标离开时启动定时器
+	oCarousel.onmouseout = function () {
+	    timer = setInterval(move,1000);
+	}
+</script>

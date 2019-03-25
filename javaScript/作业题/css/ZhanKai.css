@@ -1,0 +1,6 @@
+html,body,div,ul,li,a{margin:0; padding:0;}
+.Bodyer{width: 400px;height: auto;overflow: hidden;border: 1px solid black;margin: auto;}
+.btn{padding: 5px;font-size: 15px;background: url(../img/ico.gif)no-repeat 350px 14px;cursor: pointer;border-bottom: 1px solid black;}
+ul{list-style-type: none; width: 380px;margin-top:20px;padding-bottom: 40px;}
+ul li{line-height: 33px; padding-left:20px;}
+ul li a{text-decoration: none; color:#333;}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+		<style>
+			*{margin: 0;padding: 0;}
+			html,body {
+				position: relative;
+				height: 100%;
+			}
+			body {
+				background: #eee;
+				font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+				font-size: .14rem;
+				color: #000;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				position: relative;
+				text-align: center;
+				overflow: hidden;
+			}
+			.swiper-container {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.swiper-container img {
+				width: 100%;
+				height: auto;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+			}
+			.swiper-slide .sub_header{
+				display: block;
+				width: 100%;
+				height: .35rem;
+				font-size: .18rem;
+				padding-top: 2.5rem;
+				line-height: .3rem;
+				letter-spacing: 0.02rem;
+			}
+			.swiper-slide .header{
+				display: block;
+				width: 100%;
+				height: .65rem;
+				font-size: .4rem;
+				font-weight: 900;
+			}
+			.swiper-slide .description{
+				display: block;
+				width: 100%;
+				height: .35rem;
+				font-size: .2rem;
+				line-height: .35rem;
+			}
+			.swiper-slide .Yy{
+				width: 1.2rem;
+				height: .4rem;
+				border: #CCCCCC;
+				background: #CCCCCC;
+				position: absolute;
+				bottom: .5rem;
+				left: .6rem;
+				font-size: .16rem;
+				color: black;
+			}
+			.swiper-slide .Lj{
+				width: 1.2rem;
+				height: .4rem;
+				border: #CCCCCC;
+				background: #333333;
+				position: absolute;
+				bottom: .5rem;
+				right: .6rem;
+				font-size: .16rem;
+				color: white;
+			}
+			.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+				width: .1rem;
+				height: .1rem;
+				margin: 0 .05rem;
+			}
+			.swiper-pagination-bullet-active{
+				width: .05rem;
+				height: .05rem;
+			}
+			#Yy{
+				width: .1rem;
+				height: .04rem;
+			}
+		</style>
+	</head>
+	<script type="text/javascript">
+		var html = document.getElementsByTagName('html')[0];
+		html.style.fontSize = html.clientWidth / 3.75 + "px";
+	</script>
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper" id="swiper">
+				<div class="swiper-slide"></div>
+      			<div class="swiper-slide"></div>
+			    <div class="swiper-slide"></div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+<script>
+	//swiper的Js
+	var swiper = new Swiper('.swiper-container', {
+		spaceBetween: 30,
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+	});
+	//获取大盒子元素
+	var swiper = document.getElementById("swiper");
+	//获取每个div的元素
+	var slide = document.getElementsByClassName("swiper-slide");
+	//axios链接获取数据
+	axios.get("https://resources.ninghao.net/wxapp-case/db.json").then(function(response) {
+		console.log()
+		//获取成功方法
+		//循环遍历data中的slides中的数据
+		for(var i = 0; i < response.data.slides.length; i++) {
+			//for  in方法遍历获取到的数据
+			for(j in response.data.slides[i]) {
+				for (var i = 0 ; i < slide.length ; i++) {
+					if(j == "image") {
+						var img = document.createElement("img");
+						img.src = response.data.slides[i].image;
+						slide[i].appendChild(img);
+					}
+				}
+				for (var i = 0 ; i < slide.length ; i++) {
+					if(j == "sub_header") {
+						var oP = document.createElement("p");
+						oP.className = "header";
+						oP.innerHTML = response.data.slides[i].header;
+						var arr = oP.innerHTML;
+						slide[i].appendChild(oP);
+					}
+				}
+				for (var i = 0 ; i < slide.length ; i++) {
+					if(j == "header") {
+						var oP = document.createElement("p");
+						oP.className = "sub_header";
+						oP.innerHTML = response.data.slides[i].sub_header.toUpperCase();
+						slide[i].appendChild(oP);
+					}
+				}
+				for (var i = 0 ; i < slide.length ; i++) {
+					if(j == "description") {
+						var oP = document.createElement("p");
+						oP.className = "description";
+						oP.innerHTML = response.data.slides[i].description;
+						slide[i].appendChild(oP);
+					}
+				}
+			}
+		}
+	}, function(error) {
+		console.log("错误信息:" + error)
+	})
+	for (var i = 0 ; i < slide.length ; i++) {
+		var but = document.createElement("button");
+		but.className = "Yy";
+		but.innerHTML = "预约驾驶";
+		slide[i].appendChild(but);
+	}
+	for (var i = 0 ; i < slide.length ; i++) {
+		var but = document.createElement("button");
+		but.className = "Lj";
+		but.innerHTML = "了解更多";
+		slide[i].appendChild(but);
+	}
+</script>

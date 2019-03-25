@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>改变图片路径</title>
+	</head>
+	<body>
+		<form action="">
+		    <input type="text" id="imgSrc" value="">
+		    <input type="button" id="btn" value="改变图片">
+		</form>
+		<img id="pic" src="img/1.jpg" alt="" style="width: 500px;height: 300px;">
+		<script type="text/javascript" src="js/imgSrc.js"></script>
+	</body>
+</html>
+<script type="text/javascript">
+	//1.获取路径
+	var oImgSrc = document.getElementById("imgSrc");
+	var oBtn = document.getElementById("btn");
+	var oPic = document.getElementById("pic");
+	//2.添加点击事件
+	oBtn.onclick = function(){
+		//3.改变img的路径
+		 oPic.src = "img/" + oImgSrc.value + ".jpg";
+	}
+</script>

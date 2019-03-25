@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>求和</title>
+		<style type="text/css">
+			body{color:#999;font:12px/1.5 Tahoma;}
+			input{width: 400px;height: 50px;font-size: 20px;border-radius: 10px;}
+			span{font-size: 20px;}
+			button{width: 100px;height: 40px;font-size: 18px;border-radius: 5px;color: white;}
+			#outer{width:500px;margin:0 auto;}
+			#outer input{padding:3px;border:1px solid #ccc;font-family:inherit;width:220px;margin-right:10px;}
+			.sum{font-size:30px;color:red;}
+		</style>
+	</head>
+	<body>
+		<label><input type="text" value="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15" /><span>输入数字求和，数字之间用半角","号分隔</span></label>
+	    <p><button>求和</button></p>
+	    <strong class="sum"></strong>
+		<script type="text/javascript" src="js/sum.js"></script>
+	</body>
+</html>
+<script type="text/javascript">
+	var oInp = document.getElementsByTagName("input")[0];
+	var oBut = document.getElementsByTagName("button")[0];
+	var oStrong = document.getElementsByTagName("strong")[0];
+	oInp.onkeyup = function(){
+		this.value = this.value.replace(/[^(\d)|(,)] /,"");
+	}
+	oBut.onclick = function(){
+		var sum = 0;
+		var newArray = oInp.value.split(",");
+		for (var i = 0 ; i < newArray.length ; i++) {
+			sum += parseInt(newArray[i]);
+		}
+		oStrong.innerHTML = sum;
+	}
+</script>

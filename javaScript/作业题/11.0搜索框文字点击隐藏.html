@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索框文字点击隐藏</title>
+		<style type="text/css">
+			#Inp{width: 200px;height: 30px;padding-left: 10px;border-radius: 5px;color: #CCCCCC;}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="Inp" value="请输入..." />
+	</body>
+</html>
+<script type="text/javascript">
+	var oInp = document.getElementById("Inp");
+	oInp.onfocus = function(){
+		if (oInp.value == "请输入...") {
+			oInp.value = "";
+			oInp.style.color = "black";
+		}
+	}
+	oInp.onblur = function(){
+		if (oInp.value == "") {
+			oInp.value = "请输入...";
+			oInp.style.color = "#CCCCCC";
+		}
+	}
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索框文字点击隐藏</title>
+		<style type="text/css">
+			#Inp{width: 200px;height: 30px;padding-left: 10px;border-radius: 5px;color: #CCCCCC;}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="Inp" value="请输入..." />
+	</body>
+</html>
+<script type="text/javascript">
+	//1.获取元素
+	var oInp = document.getElementById("Inp");
+	//2.添加焦点事件
+	oInp.onfocus = function(){
+		//a.如果文本值==请输入..
+		if (oInp.value == "请输入...") {
+			//b.文本值为空   字体颜色变为黑色
+			oInp.value = "";
+			oInp.style.color = "black";
+		}
+	}
+	//3.添加失去焦点事件
+	oInp.onblur = function(){
+		//a.如果文本内容为空
+		if (oInp.value == "") {
+			//b.文本值==请输入...  字体颜色为灰色
+			oInp.value = "请输入...";
+			oInp.style.color = "#CCCCCC";
+		}
+	}
+</script>

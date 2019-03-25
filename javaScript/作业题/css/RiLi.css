@@ -1,0 +1,7 @@
+body,div,ul,li,h4,p,hr{margin: 0;padding: 0;}
+ul{width: 535px;height: auto;overflow: hidden;border: 1px solid black;margin: auto;}
+ul li{list-style: none;width: 100px;height: 100px;float: left;margin: 16.3px;text-align: center;line-height: 100px;background: #CCCCCC;color: white;}
+div{width: 535px;height: auto;overflow: hidden;margin: auto;border: 1px solid black;}
+div h4{padding-left: 15px;line-height: 33px;}
+div p{padding-left: 15px;line-height: 30px;}
+.cur{background: #B8860B;}

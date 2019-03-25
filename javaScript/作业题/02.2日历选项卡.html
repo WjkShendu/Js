@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>日历选项卡</title>
+		<style type="text/css">
+			body,div,ul,li,h4,p,hr{margin: 0;padding: 0;}
+			ul{width: 535px;height: auto;overflow: hidden;border: 1px solid black;margin: auto;}
+			ul li{cursor: pointer;list-style: none;width: 100px;height: 100px;float: left;margin: 16.3px;text-align: center;line-height: 100px;background: #CCCCCC;color: white;}
+			div{width: 535px;height: auto;overflow: hidden;margin: auto;border: 1px solid black;}
+			div h4{padding-left: 15px;line-height: 33px;}
+			div p{padding-left: 15px;line-height: 30px;}
+			.cur{background: #B8860B;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="cur">第1月</li>
+			<li>第2月</li>
+			<li>第3月</li>
+			<li>第4月</li>
+			<li>第5月</li>
+			<li>第6月</li>
+			<li>第7月</li>
+			<li>第8月</li>
+			<li>第9月</li>
+			<li>第10月</li>
+			<li>第11月</li>
+			<li>第12月</li>
+		</ul>
+		<div>
+			<h4>第1个月</h5>
+			<hr />
+			<p>1月1日元旦节</p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var oLi = document.getElementsByTagName("li");
+	var oH4 = document.getElementsByTagName("h4")[0];
+	var oP = document.getElementsByTagName("p")[0];
+	var oArray = [
+        "元旦：1月1日至3日放假三天。",
+        "春节：2月2日至8日放假7天。",
+        "妇女节：3月8日妇女节，与我无关。",
+        "清明节：4月3日至5日放假3天",
+        "劳动节：4月30日至5月2日放假3天。",
+        "端午节：6月4日至6日放假3天。",
+        "小暑：7月7日小暑。不放假。",
+        "七夕节：8月6日七夕节。不放假。",
+        "中秋节：9月10日至12日放假3天。",
+        "国庆节：10月1日至7日放假7天。",
+        "立冬：11月8日立冬。不放假。",
+        "艾滋病日:12月1日<br />废除奴隶制国际日:12月2日。"
+    ];
+    for (var i = 0 ; i < oLi.length ; i++) {
+    	oLi[i].index = i;
+    	oLi[i].onclick = function(){
+    		for (var i = 0 ; i < oLi.length ; i++) {
+    			oLi[i].className = "";
+    		}
+    		this.className = "cur";
+    		oH4.innerHTML = "第"+(this.index+1)+"天";
+    		oP.innerHTML = oArray[this.index];
+    	}
+    }
+</script>

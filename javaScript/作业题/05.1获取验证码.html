@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>获取验证码</title>
+		<style type="text/css">
+			#but{width: 200px;height: 40px;font-size: 18px;margin: 50px auto;cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<input type="button" id="but" value="点击发送验证码" />
+	</body>
+</html>
+<script type="text/javascript">
+	//1.获取元素
+	var oBut =document.getElementById("but");
+	//2.创建间隔器名
+	var timer = null;
+	//3.添加点击事件
+	oBut.onclick = function(){
+		//a.定义一个数记录秒数
+		var count = 5;
+		//b.设置点击后input的初始值
+		this.value = count+"秒后重新申请验证发"
+		//c.点击后禁用
+		oBut.disabled = true;
+		//d.函数内部this指向window所以创建一个值存储
+		var that = this;
+		//e.每次点击前先进性清除
+		clearInterval(timer);
+		//f.添加定时器
+		timer = setInterval(function(){
+			//I.每隔一秒count-1
+			count--;
+			//II.每隔一秒改变一次input的值
+			that.value = count+"秒后重新申请验证发"
+			//III.如果if==0
+			if (count == 0) {
+				//IV.清除自身的定时器
+				clearInterval(timer);
+				//V.count重新赋值
+				count = 5;
+				//VI.input打开使用
+				oBut.disabled = false;
+				//VII.input重新赋值
+				that.value = "点击重新发送验证码";
+			}
+		},1000);
+	}
+</script>
