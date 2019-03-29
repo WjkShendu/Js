@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>记住密码提示框</title>
+		<style type="text/css">
+			body,input,p{margin:0;padding:0;}
+			body{font:12px/1.5 Tahoma;}
+			#outer{width:200px;margin:10px auto;}
+			input{margin-right:5px;vertical-align:middle;}
+			#tips{padding:5px;margin-top:5px;background:#ffefa4;border:1px solid #f90;display:none;}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<label id="JiZhu" ><input type="checkbox">两周内自动登陆</label>
+		    <div id="tips">为了您的信息安全，请不要在网吧或公用电脑上使用此功能！</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//获取id为JiZhu的元素
+	var oJz = document.getElementById("JiZhu");
+	//获取弹出的提示框
+	var oTips = document.getElementById("tips");
+	//添加鼠标触碰上时的效果
+	oJz.onmouseover = function(){
+		oTips.style.display = "block";
+	}
+	oJz.onmouseout = function(){
+		oTips.style.display = "none";
+	}
+</script>

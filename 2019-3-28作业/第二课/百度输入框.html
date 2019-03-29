@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>百度输入框</title>
+	</head>
+	<style>
+		*{margin:0;padding:0;}
+		ul{list-style-type:none;}
+		button{cursor:pointer;}
+		#List{margin-top:5px;background:#fff;border:1px solid #9a99ff;display:none;width: 43px;}
+		#List li{width:100%;line-height:24px;display:inline-block;vertical-align:top;}
+		#close{border-top:1px solid #9a99ff;}
+		#List li a{padding:0 5px;display:block;text-decoration:none;}
+		#List li a:hover{background:#d9e1f6;}
+	</style>
+	<body>
+		<button>输入法</button>
+	    <ul id="List">
+	        <li><a href="javascript:;">手写</a></li>
+	        <li><a href="javascript:;">拼音</a></li>
+	        <li id="close"><a href="javascript:;">关闭</a></li>
+	    </ul>
+	</body>
+</html>
+<script type="text/javascript">
+	//获取按钮
+	var oBtn = document.getElementsByTagName("button")[0];
+	//获取ul
+	var oList = document.getElementById("List");
+	//获取关闭的元素
+	var oClose = document.getElementById("close");
+	//给按钮添加点击事件
+	oBtn.onclick = function(){
+		//三目运算判断oList的display
+		oList.style.display = oList.style.display == "block" ? "none" : "block"
+	};
+	//给关闭添加点击事件
+	oClose.onclick = function(){
+		oList.style.display = "none"	
+	}
+</script>

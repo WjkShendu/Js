@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>控制div属性</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#He{width: 320px;height: auto; overflow: hidden;margin: 20px auto;}
+			button{width: 60px;height: 30px;border: 1px solid #CCCCCC;background: #CCCCCC;border-radius: 5px;color: white;outline-style: none;cursor: pointer;margin: 20px auto;}
+			#div1{width: 100px;height: 100px;border: 1px solid #CCCCCC;margin: auto;}
+		</style>
+	</head>
+	<body>
+		<div id="He">
+			<button>变高</button>
+			<button>变宽</button>
+			<button>变色</button>
+			<button>隐藏</button>
+			<button>重置</button>
+		</div>
+		<div id="div1"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	//获取button元素
+	var oBtn = document.getElementsByTagName("button");
+	//获取id为div1的元素
+	var oDiv = document.getElementById("div1");
+	//创建一个样式的数组
+	var oStyle = ["height","width","background","display","display"];
+	//创建一个改变后的样式数组
+	var oStyleValue = ["200px","200px","#ccc","none","block"];
+	//封装一个改变的函数
+	function getStyle(ele,Style,value){
+		ele.style[Style] = value;
+	}
+	//给每个oBtn添加点击事件
+	for(var i = 0 ; i < oBtn.length ; i++){
+		oBtn[i].index = i;
+		oBtn[i].onclick = function(){
+			//如果obtn的下标为最后一项时让他的行内样式清空
+			if(this.index == oBtn.length - 1){
+				oDiv.style.cssText = "";
+			}
+			getStyle(oDiv, oStyle[this.index], oStyleValue[this.index])
+		}
+	}
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标移入/移出样式改变</title>
+		<style>
+			*{margin: 0;padding: 0;}
+			#div1{width:200px;height:200px;margin:0 auto;padding:10px;background:black;border:10px solid #000;color: white;}
+			#div1.hover{color:yellowgreen;background:#f0f0f0;border:10px solid yellowgreen;}
+		</style>
+	</head>
+	<body>
+		<div id="div1">鼠标移入改变样式，鼠标移出恢复。</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//获取id为div1的元素
+	var oDiv = document.getElementById("div1");
+	//添加鼠标移入函数    添加classname
+	oDiv.onmouseover = function(){
+		oDiv.className = "hover";
+	}
+	//添加鼠标移出函数    去除classname
+	oDiv.onmouseout = function(){
+		oDiv.className = "";
+	}
+</script>

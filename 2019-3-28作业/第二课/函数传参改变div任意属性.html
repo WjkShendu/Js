@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>函数传参改变div任意属性</title>
+		<style type="text/css">
+			body,p{margin:0;padding:0;}
+			body{color:#333;font:12px/1.5 Tahoma;padding-top:10px;}
+			#outer{width:300px;margin:0 auto;}
+			p{margin-bottom:10px;}
+			button{margin-right:5px;}
+			label{width:5em;display:inline-block;text-align:right;}
+			input{padding:3px;border:1px solid #ccc;}
+			#div1{color:black;width:200px;height:200px;background:white;margin:0 auto;padding:10px;border: 1px solid #CCCCCC;}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+		    <p><label>属性名：</label><input type="text" value="background"></p>
+		    <p><label>属性值：</label><input type="text" value="blue"></p>
+		    <p><label></label><button>确定</button><button>重置</button></p>
+		</div>
+		<div id="div1">在上方输入框输入"属性名"及"属性值"，点击确定按钮查看效果。</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//获取标签为input的元素
+	var oInp = document.getElementsByTagName("input");
+	//获取按钮
+	var oBut = document.getElementsByTagName("button");
+	//获取id为div1的元素
+	var oDiv = document.getElementById("div1");
+	//封装一个更换样式的函数
+	function getStyle(ele,Style,value){
+		ele.style[Style] = value;
+	}
+	//给每个按钮添加点击事件
+	oBut[0].onclick = function(){
+		//调用getStyle函数方法
+		getStyle(oDiv,oInp[0].value,oInp[1].value);
+	}
+	oBut[1].onclick = function(){
+		//删除元素的样式
+		oDiv.removeAttribute("style");
+	}
+</script>
