@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录页</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/dengluye.css"/>
+		<!--[if lte IE 8]> <script>var _iealwn = {once: 0, outver: 8};</script> <script id="_iealwn_js" src="//support.dmeng.net/ie-alert-warning/latest.js"></script> <![endif]-->
+	</head>
+	<body>
+		<!--header-->
+		<div class="header">
+			<h1>信用商场</h1>
+			<h2>欢迎登陆</h2>
+			<div class="header_logo">
+				<img src="../img/images/xy_header_tel.png"/>
+			</div>
+		</div>
+		<!--content-->
+		<div class="content">
+			<div class="w1200">
+				<div class="content_k">
+					<h3 class="title"><i class="icon"></i>信用商场</h3>
+				<div class="icon_top">
+					<a class="a1" href="#">账户登陆</a>
+					<a class="a2" href="#">注册</a>
+					</div>
+					<div class="content_from">
+						<div class="formTop">
+							<input type="text" name="" id="username" value="" />
+						</div>
+						<div class="from_bottom">
+							<input type="password" name="" id="possword" value="" />
+						</div>
+					</div>
+					<div class="form_back">
+						<label for="remember">
+							<i class="f1"><input type="checkbox" name="" id="chbox" value="" /></i>
+							<span>记住密码</span>
+						</label>
+						<a href="#">忘记密码？</a>
+					</div>
+					<div class="content_bottom">
+						<input type="submit" name="" id="btn" value="登陆" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+		<div class="footer">
+			<div class="footer_bottom">
+				<img src="../img/images/扶贫商城_03.png">
+				<ul>
+					<li class="bottomLi"><a href="#"> 售后保障</a></li>
+					<li class="bottom_li"><a href="#"> 退换货流程</a></li>
+					<li><a href="#">售后服务承诺及政策</a></li>
+				</ul>
+				<ul>
+					<li class="bottomLi"><a href="#"> 关于我们</a></li>
+					<li class="bottom_li"><a href="#"> 公司信息</a></li>
+					<li><a href="#">联系我们</a></li>
+				</ul>
+				<dl>
+					<dt>扶贫认证</dt>
+					<dd>二维码</dd>
+				</dl>
+				<span><img src="../img/images/index17_44.png"/></span>
+				<p>版权所有：上海市社会信用促进中心 2017 沪 ICP 备：17053360 号</p>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="../js/Cookie.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+		//获取元素
+		var username = document.getElementById("username");//获取账号的input
+		var possword = document.getElementById("possword");//获取密码的input
+		var chbox = document.getElementById("chbox");//获取记住密码前的复选框
+		var btn = document.getElementById("btn");//获取登录按钮
+		var zhanghao = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;//帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$
+		var mima = /^[a-zA-Z]\w{5,17}$/;//密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：^[a-zA-Z]\w{5,17}$
+		//获取Cookie里的复选框状态
+//		chbox.checked = getCookie("chbox");
+		username.value = getCookie("username");//获取Cookie里的账号
+		possword.value = getCookie("possword");//获取Cookie里的密码
+		if(getCookie("chbox") == true){
+			chbox.checked = true;
+		}else if(getCookie("chbox")==false){
+//			deleteCookie("possword");
+			chbox.checked = false;
+		}
+		//判断如果Cookie里如果有存放的账号密码并且复选框为选中状态，就直接跳转到首页
+//		if(getCookie("username")&&getCookie("possword")){
+//			window.location.href = "index.html";
+//		}
+		//Cookie里没有存放的账号密码就正常打开登录页，给登录按钮添加点击事件
+		btn.onclick = function(){
+			var box  = {
+				uname : username.value,
+				pword : possword.value
+			}
+			setCookie("username",username.value,setCookieDate(30));
+			setCookie("possword",possword.value,setCookieDate(30));
+			setCookie("chbox",chbox.checked,setCookieDate(30));
+			setCookie("box",box,setCookieDate(30));
+			if(chbox.checked == true){
+				//满足条件的话并且勾选复选框就把输入的账号密码存放到Cookie里
+				if((username.value==box.uname)&&(possword.value==box.pword)){
+					window.location.href = "index.html";
+				}else{
+					alert("密码错误，请重新输入");
+				}	
+			}else if(chbox.checked == false){
+				//复选框没勾选就存放账号和复选框状态到Cookie
+				deleteCookie("possword");
+				if((username.value==box.uname)&&(possword.value==box.pword)){
+					window.location.href = "index.html";
+				}else{
+					alert("密码错误，请重新输入");
+				}		
+			}
+		}
+</script>
