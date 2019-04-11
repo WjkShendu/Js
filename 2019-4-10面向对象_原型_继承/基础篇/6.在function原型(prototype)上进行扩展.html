@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>在function原型(prototype)上进行扩展</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/**
+	 * 原型添加的方法不会有多个副本，不会浪费资源，所有的对象只有一套方法
+	 * Person构造函数：在Js中，构造函数其实就可以看成类，对某个对象的抽象定义
+	 * @param {object} name
+	 * @param {object} age
+	 */
+	function person(name,age){
+		//属性：每个对象的属性各不相同
+		this.name = name;
+		this.age = age;
+	}
+	//在原型上添加方法，这样创建的所有对象都是用的同一套方法
+	person.prototype.run = function(){
+		alert(this.name + this.age + "运行中...");
+	}
+	//创建两个对象
+	var p1 = new person("jsck",100);
+	var p2 = new person("rose",200);
+	p1.run();
+	p2.run();
+	alert(p1.run == p2.run);//true
+	alert(p1.run == person.prototype.run);
+	/**
+	 * 通过prototype可以方便扩展系统对象，
+	 * 按照自己的需求来扩展，而且又能适用于所有地方，
+	 * 又不浪费资源
+	 */
+</script>

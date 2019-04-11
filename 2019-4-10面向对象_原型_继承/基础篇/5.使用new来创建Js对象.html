@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>使用new来创建Js对象</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	function Person(name,age){
+		/**
+		 * 假想系统会创建一个对象
+		 * var this = new object();
+		 */
+		alert(this);
+		this.name = name;
+		this.age = age;
+		this.run = function(){
+			alert(this.name + this.age + "运行中...");
+		}
+		/**
+		 * 假想返回了对象
+		 * return this;
+		 */
+	}
+	//在外边new了在function里面就不用new了；在function里边new了在外边就不用new了
+	var p1 = new Person("jack",100);
+	var p2 = new Person("rose",200);
+	alert(p1.run == p2.run);
+	/**
+	 * 这种方法只解决了方法创建但并没有解决每个对象还有自己的一套方法
+	 * 
+	 */
+</script>

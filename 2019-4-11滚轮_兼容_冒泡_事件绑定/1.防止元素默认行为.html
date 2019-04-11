@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>防止元素默认行为</title>
+	</head>
+	<body>
+		<a href="https://www.baidu.com">百度</a>
+	</body>
+</html>
+<script type="text/javascript">
+	var oA = document.getElementsByTagName("a")[0];
+	oA.onclick = function(){
+		alert("1111");
+		return false;
+	}
+	/**
+	 * 可以添加return进行阻止
+	 * 但这种方法不够完善
+	 * 1.当前边还有return时可能不会执行到它，所以还是不能有效阻止默认行为
+	 * 2.return后的代码无法执行
+	 */
+	var i = 10;
+	oA.onclick = function(){
+		if(i == 10){
+			return;
+		}
+		return false;
+	}
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>面向对象的选项卡</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#tagBox{width: 600px;height: auto;overflow: hidden;padding: 20px 30px;border: 1px solid #ccc;margin: auto;}
+			#tagBox input{border: none;width: 150px;height: 30px;text-align: center;border-radius: 5px;outline: none;cursor: pointer;margin-bottom: 20px;}
+			#tagBox .active{color: #fff;background: aqua;}
+			#tagBox div{width: 100%;height: 400px;text-align: center;line-height: 400px;display: none;}
+			#tagBox .act{display: block;}
+		</style>
+	</head>
+	<body>
+		<div id="tagBox">
+			<input type="button"value="游戏" class="active"/>
+			<input type="button"value="旅游" />
+			<input type="button"value="音乐" /><hr />
+			<div class="act">GTA5,孤岛惊魂</div>
+			<div>中国，澳大利亚</div>
+			<div>烤面筋，一生无你</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	/**
+	 * 将之前window.onload里的代码提到一个构造函数里
+	 * 可以将这个tab构造函数想象成一个tab类
+	 * id：选项卡id以参数的形式传入
+	 */
+	function Tab(id){
+		var tabBox = document.getElementById(id);
+		//将之前的全局变量变为对象的属性
+		this.tabBtn = tabBox.getElementsByTagName("input");
+		this.tabDiv = tabBox.getElementsByTagName("div");
+		
+		for(var i = 0; i < this.tabBtn.length; i++) {
+			this.tabBtn[i].index = i;
+			
+			//将this保存成一个变量，就可以在下边的代码中调用对象的方法了
+			var obj = this;
+			console.log(obj)
+			//此处这种方法调用函数，不会改变click方法的所属关系
+			this.tabBtn[i].onclick = function(){
+				//注意此处不能直接使用this，this指向的是this.tabBtn[i]
+				obj.click();
+			}
+		}
+	}
+	//将之前的全局函数添加到构造函数的原型里，作为对象的一个方法
+	Tab.prototype.click = function(){
+		alert(this)
+		for(var i = 0; i < this.tabBtn.length; i++) {
+			this.tabBtn[i].className ="";
+			this.tabDiv[i].className = "";
+		}
+		this.className = "active";
+		this.tabDiv[this.index].className = "act";
+	}
+	var tab = new Tab("tagBox");
+	/**
+	 * 看第43行，注意在function里需要用到外部保存的变量_this。
+	 * 再看第44行，此时弹出的是一个Object，
+	 * 说明clickBtn的所属关系没变，还是Tab对象。
+
+		但是还有另一个问题，此时clickBtn里的this指向对象，
+		那么看第59、60行中this.className、this.index，
+		此处的this指的是tab对象，那么对象中有这两个属性吗？
+		没有，还会出错！
+	 */
+</script>

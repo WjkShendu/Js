@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>面向对象的选项卡</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#tagBox{width: 600px;height: auto;overflow: hidden;padding: 20px 30px;border: 1px solid #ccc;margin: auto;}
+			#tagBox input{border: none;width: 150px;height: 30px;text-align: center;border-radius: 5px;outline: none;cursor: pointer;margin-bottom: 20px;}
+			#tagBox .active{color: #fff;background: aqua;}
+			#tagBox div{width: 100%;height: 400px;text-align: center;line-height: 400px;display: none;}
+			#tagBox .act{display: block;}
+		</style>
+	</head>
+	<body>
+		<div id="tagBox">
+			<input type="button"value="游戏" class="active"/>
+			<input type="button"value="旅游" />
+			<input type="button"value="音乐" /><hr />
+			<div class="act">GTA5,孤岛惊魂</div>
+			<div>中国，澳大利亚</div>
+			<div>烤面筋，一生无你</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var tabBox = document.getElementById("tagBox");
+	var tabBtn = document.getElementsByTagName("input");
+	var tabDiv = tabBox.getElementsByTagName("div");
+	
+	for(var i = 0; i < tabBtn.length; i++) {
+		tabBtn[i].index = i;
+		tabBtn[i].onclick = click;
+	}
+	//封装click方法
+	function click() {
+		for(var i = 0; i < tabBtn.length; i++) {
+		tabBtn[i].className ="";
+			tabDiv[i].className = "";
+		}
+		this.className = "active";
+		tabDiv[this.index].className = "act";
+	}
+</script>

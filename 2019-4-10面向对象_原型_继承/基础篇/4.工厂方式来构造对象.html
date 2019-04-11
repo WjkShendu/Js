@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>工厂方式来构造对象</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/**
+	 * 工厂：简单来说就是投入原料，加工，出厂
+	 */
+	function createPerson(name,age){
+		var person = new Object();
+		//原料(属性)
+		person.name = name;
+		person.age = age;
+		//加工(方法)
+		person.run = function(){
+			alert(this.name + this.age + "运行中...");
+		}
+		//出厂(返回给当前对象)
+		return person;
+	}
+	//创建两个实例化对象进行传参
+	var p1 = createPerson("jack",100);
+	var p2 = createPerson("rose",200);
+	//调用对象方法
+	p1.run();
+	p2.run();
+	/**
+	 * 优点：将重复代码提取到一个函数中，避免了大量重复的代码
+	 * 缺点：a.一般创建对象通过new创建，比如new Date(),这里使用的是方法创建。
+	 * 			使用new创建可以简化一些代码，也带来一些新的特性
+	 *       b.每个对象都有一套自己的方法，浪费资源
+	 * 				person.run = function(){} 等价于 person.run = new Function('');
+	 */
+	alert(p1.run == p2.run);
+</script>

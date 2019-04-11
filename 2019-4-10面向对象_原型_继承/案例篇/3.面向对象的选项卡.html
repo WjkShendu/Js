@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>面向对象的选项卡</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#tagBox{width: 600px;height: auto;overflow: hidden;padding: 20px 30px;border: 1px solid #ccc;margin: auto;}
+			#tagBox input{border: none;width: 150px;height: 30px;text-align: center;border-radius: 5px;outline: none;cursor: pointer;margin-bottom: 20px;}
+			#tagBox .active{color: #fff;background: aqua;}
+			#tagBox div{width: 100%;height: 400px;text-align: center;line-height: 400px;display: none;}
+			#tagBox .act{display: block;}
+		</style>
+	</head>
+	<body>
+		<div id="tagBox">
+			<input type="button"value="游戏" class="active"/>
+			<input type="button"value="旅游" />
+			<input type="button"value="音乐" /><hr />
+			<div class="act">GTA5,孤岛惊魂</div>
+			<div>中国，澳大利亚</div>
+			<div>烤面筋，一生无你</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	/**
+	 * 将之前window.onload里的代码提到一个构造函数里
+	 * 可以将这个tab构造函数想象成一个tab类
+	 * id：选项卡id以参数的形式传入
+	 */
+	function Tab(id){
+		console.log(this)
+		var tabBox = document.getElementById(id);
+		//将之前的全局变量变为对象的属性
+		this.tabBtn = tabBox.getElementsByTagName("input");
+		this.tabDiv = tabBox.getElementsByTagName("div");
+		
+		for(var i = 0; i < this.tabBtn.length; i++) {
+			this.tabBtn[i].index = i;
+			this.tabBtn[i].onclick = this.click;
+		}
+	}
+	//将之前的全局函数添加到构造函数的原型里，作为对象的一个方法
+	Tab.prototype.click = function(){
+		alert(this)
+		for(var i = 0; i < tabBtn.length; i++) {
+			tabBtn[i].className ="";
+			tabDiv[i].className = "";
+		}
+		this.className = "active";
+		tabDiv[this.index].className = "act";
+	}
+	var tab = new Tab("tagBox");
+	/**
+	 * 这里必须注意：在构造函数Tab里的this跟之前this所代表的是不同的(此处是通过new来创建对象的)；
+	 * 在上面的示例中，this指的是调用者；在构造函数里，this指向的是var tab = new Tab() ，
+	 * 即tab这个对象，注意是对象。
+
+		说一下这段代码的问题：我们在Tab的原型上添加clickBtn方法后，
+		clickBtn方法里的this本应该是指向var tab = new Tab()的，
+		但是我们在第42行将clickBtn添加给了this.tabBtn[i]，
+		即input按钮，clickBtn的所属由Tab对象变成了input按钮(第49行)。
+
+		clickBtn的所属变成input按钮后，
+		那么clickBtn里的this指向按钮，那再来看clickBtn里的代码，
+		this.tabBtn、this.tabDiv，input按钮里有这两个属性吗？
+		没有，所以会出错！
+	 */
+</script>

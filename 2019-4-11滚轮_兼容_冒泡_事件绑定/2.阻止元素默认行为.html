@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>阻止元素默认行为</title>
+	</head>
+	<body>
+		<a href="https//www.baidu.com">百度</a>
+	</body>
+</html>
+<script type="text/javascript">
+	var oA = document.getElementsByTagName("a")[0];
+	var num = 10;
+	oA.onclick = function(){
+		window.event.returnValue = false;
+		alert("1111")
+	}
+	/**
+	 * 通过window.event.returnValue来阻止元素默认行为
+	 * 但是在ie高版本中无法使用
+	 * 所以要进行兼容
+	 */
+</script>

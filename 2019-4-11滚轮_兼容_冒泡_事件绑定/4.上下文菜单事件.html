@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>上下文菜单事件</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			ul{list-style: none;width: 100px;height: auto;border: 1px solid #ccc;overflow: hidden;display: none;position: relative;left: 0;top: 0;}
+			ul li{border-bottom: 1px solid #ccc;line-height: 30px;text-align: center;}
+			ul li:hover{background: #ccc;color: white;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>打开</li>
+			<li>检测</li>
+			<li>检查</li>
+			<li>原属性</li>
+			<li>属性</li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript">
+	var oUl = document.getElementsByTagName("ul")[0];
+	var oLi = document.getElementsByTagName("li");
+	//阻止事件默认行为
+	function perDef(e){
+		var e = e || window.event;
+		if(e.preventDefault){
+			e.preventDefault();
+		}else{
+			e.returnValue = false;
+		}
+	}
+	//给文档添加右键效果
+	document.oncontextmenu = function(e){
+		//阻止右键默认效果
+		perDef(e);
+		oUl.style.display = "block";
+		var disY = e.clientY;	//获取当前点击的Y轴位置
+		var disX = e.clientX;	//获取当前点击的X轴位置
+		oUl.style.left = disX + "px";	//改变oUl的left值
+		oUl.style.top = disY + "px";	//改变oUl的top值
+	}
+	//给文档添加点击效果
+	document.onclick = function(){	
+		oUl.style.display = "none";
+	}
+	//给每一个li标签添加点击效果
+	for (var i = 0 ; i < oLi.length ; i++) {
+		oLi[i].onclick = function(e){
+			oUl.style.display = "none";
+		}
+	}
+	//阻止事件冒泡
+	function prevDent(e){
+		var e = e || window.event;
+		if (e.stopPropagation) {
+			e.stopPropagation();
+		} else{
+			e.cancelBubble = true;
+		}
+	}
+</script>

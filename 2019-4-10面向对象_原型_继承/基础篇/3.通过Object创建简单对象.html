@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>通过Object创建简单对象</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/**
+	 * 创建一个对象
+	 * new object()创建出来的对象几乎是空白的，需要自己添加属性，方法
+	 */
+	var person = new Object();
+	//给对象添加属性
+	person.name = "jack";
+	person.age = 100;
+	//给对象添加方法
+	person.run = function(){
+		alert(this.name + this.age + "运行中...");
+	}
+	//调用对象的方法
+	person.run();
+	/**
+	 * 弊端：
+	 * 会产生大量重复代码
+	 */
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对Array进行扩展求和</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/**
+	 * 对数组原型扩展求和方法
+	 * 注意不能只加在某个数组上，不然只能在那个对象上使用
+	 */
+	//给Array原型添加sum方法
+	Array.prototype.sum = function(){
+		//设置累加器
+		var sum = 0;
+		//循环当前this指向当前数组进行求和
+		for (var i = 0 ; i < this.length ; i++) {
+			sum += this[i];
+		}
+		//返回最后的值
+		return sum;
+	}
+	//通过new Array()和[]创建数组
+	var arr1 = new Array(1,2,3,4);
+	var arr2 = [1,2,3,4];
+	//调用求和方法
+	alert(arr1.sum());
+	alert(arr2.sum());
+	//检测方法是否一致
+	alert(arr1.sum == arr2.sum);
+	//检测原型中是否含有sum方法
+	alert(arr2.sum == Array.prototype.sum);
+</script>

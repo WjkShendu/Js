@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Js中的this以及全局对象window</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/**
+	 *定义一个全局函数 
+	 */
+	function show(){
+		alert(this);	//指向window
+	}
+	//调用函数show()
+	show();
+	//等价于：
+	window.show = function(){
+		alert(this);
+	}
+	//调用函数show()
+	window.show();
+	//同样也可以根据自己的需求为其它的对象添加方法,例：
+	var arr = [1,2,3,4,5];
+	arr.show = function(){
+		alert(this);
+	}
+	arr.show();
+	/**
+	 * this即代表当前函数的调用者
+	 * 但使用new来创建对象时，this并不是指向调用者
+	 */
+</script>
